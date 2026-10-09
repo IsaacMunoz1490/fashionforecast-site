@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Dress for the weather with outfit suggestions from your wardrobe, matched to live forecasts.">
+<title>Fashion Forecast</title>
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root {
+  --green:      #2D6A4F;
+  --mint:       #EEF7F2;
+  --bg:         #F9FAFB;
+  --surface:    #FFFFFF;
+  --fg:         #111827;
+  --fg-2:       #374151;
+  --fg-3:       #6B7280;
+  --border:     #E5E7EB;
+  --shadow:     0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.05);
+  --ff-display: 'Montserrat', sans-serif;
+  --ff-body:    'Inter', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:      #0D1117;
+    --surface: #161B22;
+    --fg:      #F0F6FC;
+    --fg-2:    #C9D1D9;
+    --fg-3:    #8B949E;
+    --border:  #30363D;
+    --mint:    #0D2818;
+    --shadow:  0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:      #0D1117;
+  --surface: #161B22;
+  --fg:      #F0F6FC;
+  --fg-2:    #C9D1D9;
+  --fg-3:    #8B949E;
+  --border:  #30363D;
+  --mint:    #0D2818;
+  --shadow:  0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
+  color-scheme: dark;
+}
+
+/* ── Reset / Base ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+body {
+  font-family: var(--ff-body);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-inline: 20px;
+}
+img { max-width: 100%; display: block }
+a { color: var(--green); text-decoration: none }
+a:hover { text-decoration: underline }
+
+/* ── Nav ────────────────────────────────────────────────────────── */
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.nav-logo { display: flex; align-items: center }
+.wordmark { height: 28px; width: auto }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .wordmark { filter: invert(1) }
+}
+:root[data-theme="dark"] .wordmark { filter: invert(1) }
+.nav-links { display: flex; gap: 24px }
+.nav-links a { color: var(--fg-2); font-size: 14px; font-weight: 500 }
+.nav-links a:hover { color: var(--green); text-decoration: none }
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.site-footer {
+  margin-top: 80px;
+  border-top: 1px solid var(--border);
+  padding: 32px 0 40px;
+}
+.footer-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 4px }
+.footer-name { font-family: var(--ff-display); font-weight: 800; font-size: 15px; color: var(--fg) }
+.footer-copy { font-size: 13px; color: var(--fg-3) }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap }
+.footer-links a { font-size: 14px; color: var(--fg-3) }
+.footer-links a:hover { color: var(--green) }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 72px 0 64px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+.hero-headline {
+  font-family: var(--ff-display);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  text-wrap: balance;
+  margin-bottom: 20px;
+  color: var(--fg);
+}
+.hero-sub {
+  font-size: 17px;
+  color: var(--fg-2);
+  max-width: 42ch;
+  margin-bottom: 32px;
+  line-height: 1.65;
+}
+.badge-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 12px;
+}
+.badge-soon svg { width: 18px; height: 18px; fill: currentColor }
+.hero-phone {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.phone-frame {
+  width: 240px;
+  border-radius: 36px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.18);
+  overflow: hidden;
+  border: 6px solid var(--fg);
+}
+.phone-frame img { width: 100%; display: block }
+
+/* ── Feature strip ──────────────────────────────────────────────── */
+.features {
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 56px 40px;
+  max-width: 960px;
+  margin: 0 auto 56px;
+  box-shadow: var(--shadow);
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+.feature-card { display: flex; flex-direction: column; gap: 10px }
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--mint);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.feature-title {
+  font-family: var(--ff-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+.feature-desc { font-size: 14px; color: var(--fg-3); line-height: 1.55 }
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: var(--ff-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 900;
+  color: var(--fg);
+  text-wrap: balance;
+}
+
+/* ── Screenshots ────────────────────────────────────────────────── */
+.screens {
+  max-width: 960px;
+  margin: 0 auto 64px;
+}
+.screens-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+  align-items: end;
+}
+.screen-item { display: flex; flex-direction: column; align-items: center; gap: 12px }
+.screen-phone {
+  border-radius: 24px;
+  overflow: hidden;
+  border: 4px solid var(--fg);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 180px;
+}
+.screen-phone img { width: 100%; display: block }
+.screen-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg-2);
+  font-family: var(--ff-display);
+}
+
+/* ── Privacy strip ──────────────────────────────────────────────── */
+.privacy-strip {
+  background: var(--green);
+  border-radius: 20px;
+  padding: 48px 40px;
+  max-width: 960px;
+  margin: 0 auto 64px;
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+}
+.privacy-strip h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.privacy-strip p { font-size: 15px; opacity: .88; max-width: 48ch; line-height: 1.6 }
+.privacy-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px }
+.pill {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.lock-icon { font-size: 48px; opacity: .35 }
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .hero { grid-template-columns: 1fr; padding: 48px 0 40px; text-align: center }
+  .hero-phone { order: -1 }
+  .hero-sub { max-width: 100% }
+  .screens-grid { grid-template-columns: repeat(2, 1fr) }
+  .features { padding: 32px 20px }
+  .privacy-strip { grid-template-columns: 1fr }
+  .lock-icon { display: none }
+}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/fashion-forecast-logo.png" alt="fashion forecast" class="wordmark">
+  </a>
+  <nav class="nav-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="support.html">Support</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Coming soon to the App Store</p>
+      <h1 class="hero-headline">Dress for the weather,<br>not just the occasion.</h1>
+      <p class="hero-sub">Fashion Forecast suggests three outfits from your own wardrobe based on live weather — for your neighbourhood, your city, or your next trip.</p>
+      <span class="badge-soon">
+        <svg viewBox="0 0 20 20"><path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm-1 14.5v-5l4 2.5-4 2.5zm0-7V5.5l4 2.5-4 2.5z"/></svg>
+        iPhone — coming soon
+      </span>
+    </div>
+    <div class="hero-phone">
+      <div class="phone-frame">
+        <img src="assets/pack.png" alt="Fashion Forecast app screen showing trip planning">
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <p class="section-label">What it does</p>
+    <h2 class="section-title">Your wardrobe, weather-ready.</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">👗</div>
+        <div class="feature-title">Wardrobe</div>
+        <div class="feature-desc">Photo your clothes or bulk-import outfits. AI identifies each piece and fills in category, warmth, material and style.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔀</div>
+        <div class="feature-title">Shuffle</div>
+        <div class="feature-desc">Three outfit suggestions matched to the live weather — wherever you are, or for any SF neighbourhood.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <div class="feature-title">Week</div>
+        <div class="feature-desc">A calendar of what you wore plus a smart laundry basket that tracks when each item needs washing.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧳</div>
+        <div class="feature-title">Pack</div>
+        <div class="feature-desc">A capsule wardrobe and day-by-day outfit plan across cities, using actual forecast or typical weather.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screens">
+    <p class="section-label">The app</p>
+    <h2 class="section-title">Four tabs. Every outfit decision handled.</h2>
+    <div class="screens-grid">
+      <div class="screen-item">
+        <div class="screen-phone"><img src="assets/wardrobe.png" alt="Wardrobe tab"></div>
+        <span class="screen-label">Wardrobe</span>
+      </div>
+      <div class="screen-item">
+        <div class="screen-phone"><img src="assets/shuffle.png" alt="Shuffle tab"></div>
+        <span class="screen-label">Shuffle</span>
+      </div>
+      <div class="screen-item">
+        <div class="screen-phone"><img src="assets/week.png" alt="Week tab"></div>
+        <span class="screen-label">Week</span>
+      </div>
+      <div class="screen-item">
+        <div class="screen-phone"><img src="assets/pack.png" alt="Pack tab"></div>
+        <span class="screen-label">Pack</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy-strip">
+    <div>
+      <h2>Zero tracking. Your wardrobe stays on your phone.</h2>
+      <p>No account required. No ads. We use no analytics services that transmit data off your device. Everything — your photos, wear history, and trips — is stored only on your device.</p>
+      <div class="privacy-pills">
+        <span class="pill">No account</span>
+        <span class="pill">No ads</span>
+        <span class="pill">No data collected</span>
+        <span class="pill">GPS stripped from photos</span>
+        <span class="pill">AES-256 backups</span>
+      </div>
+    </div>
+    <div class="lock-icon">🔒</div>
+  </section>
+</main>
+
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-name">Fashion Forecast</span>
+      <span class="footer-copy">&copy; 2026 Isaac A. Munoz. All rights reserved.</span>
+    </div>
+    <nav class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

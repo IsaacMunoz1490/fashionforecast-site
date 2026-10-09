@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fashion Forecast Terms</title>
+<link rel="icon" type="image/png" href="assets/icon.png">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* ── Tokens ─────────────────────────────────────────────────────── */
+:root {
+  --green:      #2D6A4F;
+  --green-deep: #065F46;
+  --mint:       #EEF7F2;
+  --mint-lt:    #D1FAE5;
+  --bg:         #F9FAFB;
+  --surface:    #FFFFFF;
+  --fg:         #111827;
+  --fg-2:       #374151;
+  --fg-3:       #6B7280;
+  --border:     #E5E7EB;
+  --shadow:     0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.05);
+  --r:          16px;
+  --ff-display: 'Montserrat', sans-serif;
+  --ff-body:    'Inter', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:      #0D1117;
+    --surface: #161B22;
+    --fg:      #F0F6FC;
+    --fg-2:    #C9D1D9;
+    --fg-3:    #8B949E;
+    --border:  #30363D;
+    --mint:    #0D2818;
+    --mint-lt: #1A3C27;
+    --shadow:  0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:      #0D1117;
+  --surface: #161B22;
+  --fg:      #F0F6FC;
+  --fg-2:    #C9D1D9;
+  --fg-3:    #8B949E;
+  --border:  #30363D;
+  --mint:    #0D2818;
+  --mint-lt: #1A3C27;
+  --shadow:  0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
+  color-scheme: dark;
+}
+
+/* ── Reset / Base ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+body {
+  font-family: var(--ff-body);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-inline: 20px;
+  padding-block: 0;
+}
+img { max-width: 100%; display: block }
+a { color: var(--green); text-decoration: none }
+a:hover { text-decoration: underline }
+
+/* ── Nav ────────────────────────────────────────────────────────── */
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.nav-logo { display: flex; align-items: center }
+.wordmark { height: 28px; width: auto; filter: var(--logo-filter, none) }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .wordmark { filter: invert(1) }
+}
+:root[data-theme="dark"] .wordmark { filter: invert(1) }
+.nav-links { display: flex; gap: 24px }
+.nav-links a { color: var(--fg-2); font-size: 14px; font-weight: 500 }
+.nav-links a:hover { color: var(--green); text-decoration: none }
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.site-footer {
+  margin-top: 80px;
+  border-top: 1px solid var(--border);
+  padding: 32px 0 40px;
+}
+.footer-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 4px }
+.footer-name { font-family: var(--ff-display); font-weight: 800; font-size: 15px; color: var(--fg) }
+.footer-copy { font-size: 13px; color: var(--fg-3) }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap }
+.footer-links a { font-size: 14px; color: var(--fg-3) }
+.footer-links a:hover { color: var(--green) }
+
+/* ── Legal page shared ──────────────────────────────────────────── */
+.legal-wrap { max-width: 680px; margin: 0 auto; padding-block: 60px 0 }
+.legal-wrap h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-bottom: 8px;
+}
+.legal-meta { color: var(--fg-3); font-size: 14px; margin-bottom: 48px }
+.legal-wrap h2 {
+  font-family: var(--ff-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 40px 0 12px;
+  color: var(--fg);
+}
+.legal-wrap p { color: var(--fg-2); margin-bottom: 14px; max-width: 65ch }
+.legal-wrap ul { color: var(--fg-2); padding-left: 20px; margin-bottom: 14px }
+.legal-wrap ul li { margin-bottom: 6px }
+.legal-wrap a { color: var(--green) }
+.legal-note {
+  background: var(--mint);
+  border-left: 3px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin: 20px 0;
+  font-size: 14px;
+  color: var(--fg-2);
+}
+</style>
+
+</head>
+<body>
+<header class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/fashion-forecast-logo.png" alt="fashion forecast" class="wordmark">
+  </a>
+  <nav class="nav-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="support.html">Support</a>
+  </nav>
+</header>
+<div class="legal-wrap">
+  <h1>Terms of Use</h1>
+  <p class="legal-meta">Effective: October 6, 2026 &nbsp;·&nbsp; Fashion Forecast for iPhone</p>
+
+  <p>These Terms of Use govern your use of the Fashion Forecast app ("the App") provided by Isaac A. Munoz ("we," "us," or "our"). By downloading or using the App, you agree to these terms.</p>
+
+  <h2>1. License</h2>
+  <p>We grant you a non-exclusive, non-transferable, revocable license to use the App on your Apple devices as permitted by the <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple Media Services Terms and Conditions</a>. You may not copy, modify, reverse-engineer, or distribute the App.</p>
+
+  <h2>2. Subscriptions and billing</h2>
+  <p>The App offers a free tier and a paid subscription plan, billed through Apple In-App Purchase.</p>
+  <ul>
+    <li><strong>Free plan:</strong> Unlimited daily outfit shuffles; access to trip planning and weekly planner requires a paid subscription.</li>
+    <li><strong>Paid plan:</strong> Full access to trip planning and weekly planner. An early-adopter price applies during the initial launch period.</li>
+    <li><strong>Billing:</strong> Subscriptions renew automatically. You can cancel at any time in iPhone Settings → Apple ID → Subscriptions.</li>
+    <li><strong>Refunds:</strong> Managed by Apple. Contact Apple Support for refund requests.</li>
+  </ul>
+
+  <h2>3. Weather and outfit suggestions</h2>
+  <p>Fashion Forecast provides outfit suggestions based on weather data from third-party services. We do not guarantee the accuracy of weather data or that suggested outfits will be appropriate for actual conditions. <strong>Use your own judgment</strong> — especially in severe weather. We are not liable for discomfort, harm, or loss resulting from outfit choices made using the App.</p>
+
+  <h2>4. AI import</h2>
+  <p>The AI import feature uses Google Gemini via your own API key to identify clothing items from photos. AI identification may be inaccurate. Always review and edit imported items before relying on them. We are not responsible for errors made by the AI identification.</p>
+
+  <h2>5. Your content</h2>
+  <p>You own the photos and data you add to the App. By using the App, you represent that you have the right to use the photos you upload. We do not access or use your content.</p>
+
+  <h2>6. Acceptable use</h2>
+  <p>You agree not to use the App in any way that violates applicable law or these Terms. The App is for personal, non-commercial wardrobe management only.</p>
+
+  <h2>7. Disclaimer of warranties</h2>
+  <p>The App is provided "as is" without warranties of any kind. We do not warrant that the App will be error-free or available at all times.</p>
+
+  <h2>8. Limitation of liability</h2>
+  <p>To the fullest extent permitted by law, we are not liable for any indirect, incidental, or consequential damages arising from your use of the App. Our total liability to you will not exceed the amount you paid for the App in the past 12 months.</p>
+
+  <h2>9. Termination</h2>
+  <p>We may suspend or terminate your access to the App if you violate these Terms. You may stop using the App at any time.</p>
+
+  <h2>10. Governing law</h2>
+  <p>These Terms are governed by the laws of the State of California, without regard to conflict of law principles.</p>
+
+  <h2>11. Changes</h2>
+  <p>We may update these Terms. Material changes will be communicated inside the App. Continued use after notice constitutes acceptance.</p>
+
+  <h2>12. Contact</h2>
+  <p>Questions about these Terms? Email <strong><a href="mailto:hello.fashionforecast@gmail.com">hello.fashionforecast@gmail.com</a></strong>.</p>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-name">Fashion Forecast</span>
+      <span class="footer-copy">&copy; 2026 Isaac A. Munoz. All rights reserved.</span>
+    </div>
+    <nav class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
