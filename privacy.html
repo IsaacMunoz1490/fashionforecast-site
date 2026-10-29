@@ -153,7 +153,7 @@ a:hover { text-decoration: underline }
 </header>
 <div class="legal-wrap">
   <h1>Privacy Policy</h1>
-  <p class="legal-meta">Effective: 2026-10-19 &nbsp;·&nbsp; Fashion Forecast for iPhone</p>
+  <p class="legal-meta">Effective: 2026-10-29 &nbsp;·&nbsp; Fashion Forecast for iPhone</p>
 
   <p>Fashion Forecast is a wardrobe app built with your privacy as a design constraint, not an afterthought. This policy explains exactly what data leaves your phone, what stays on it, and why.</p>
 
@@ -170,17 +170,18 @@ a:hover { text-decoration: underline }
 
   <h2>2. What we do not collect</h2>
   <p>We collect no account information, no name, no email address, no gender. We use no advertising identifiers (IDFA), no analytics services that transmit data off your device, and no crash-reporting services that send data to us.</p>
+  <p>Only two kinds of data ever leave your device, and only for the purposes described in sections 3 and 4: rounded location coordinates (and trip city names) for weather forecasts, and the photos you choose to send through AI Import. Both pass through our server in memory only — we do not log or store them.</p>
 
   <h2>3. Location</h2>
-  <p>Location is used only in the moment to fetch current weather for outfit suggestions. It is never stored on your device, never sent to us, and never shared with third parties beyond the weather APIs listed below. Your coordinates are rounded to approximately 1 km before being sent to Open-Meteo.</p>
+  <p>Location is used only in the moment to fetch current weather for outfit suggestions. Your device's location coordinates are rounded to approximately 1 km (~2 decimal places) and sent through our server to Open-Meteo to fetch weather forecasts. We never log or store your coordinates — they pass through in-memory only.</p>
 
   <h2>4. Third-party services</h2>
   <p>The app contacts two external services. We do not sell or share your data with any of them beyond what is described here.</p>
   <ul>
-    <li><strong>Open-Meteo</strong> — receives rounded location coordinates and the city names you enter for trips, to return weather forecasts.</li>
-    <li><strong>Google Gemini</strong> — used only when you choose AI import and enter your own free Gemini API key. The photos you select are sent <em>directly to Google</em> under your key to identify the garments and fill in their details; this is the only time your photos leave your device, and only for the photos you choose to import. Fashion Forecast has no server of its own and never receives or stores them, and the results are saved on your device. Google processes them under its own terms for the key you use — on Google's free tier, Google may use this content to improve its products and a reviewer may see it, so only import photos you are comfortable sending. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> governs that data.</li>
+    <li><strong>Open-Meteo</strong> — weather requests (rounded location coordinates and the city names you enter for trips) go through our server (a Cloudflare Worker) to Open-Meteo under a commercial API license. We do not log or store coordinates. Open-Meteo receives only the rounded location, not your identity.</li>
+    <li><strong>Google Gemini</strong> — if you use AI Import, your selected photos are sent through our server (a Cloudflare Worker) to Google's Gemini AI to identify garments and fill in their details. Photos are not stored by us — they pass through in-memory only. Google processes them under paid API terms and may retain them briefly for abuse monitoring. AI Import requires you to be 18 or older. The results are saved on your device. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> governs that data.</li>
   </ul>
-  <div class="legal-note">When you use AI import, your photos go to Google — not to us. You must be 18 or older to use AI import. You can use the app entirely without it; manual photo entry and editing never send any photos off your device.</div>
+  <div class="legal-note">AI Import is optional. You can use the app entirely without it; manual photo entry and editing never send any photos off your device.</div>
 
   <h2>5. Photos and EXIF metadata</h2>
   <p>Clothing photos are stored only on your device. When photos are imported, the app re-saves them in a way that strips GPS location metadata (EXIF data). We do not read, retain, or transmit location information embedded in photos.</p>
