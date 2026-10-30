@@ -32,17 +32,20 @@ fashion-forecast-site/
 1. Create a new **public** GitHub repo (e.g. `fashion-forecast-site`)
 2. Push all files to the `master` branch root
 3. Go to repo → **Settings → Pages**
-4. Source: `Deploy from a branch` → Branch: `main` / `/ (root)` → Save
-5. Your site will be live at:
-   `https://<your-github-username>.github.io/fashion-forecast-site/`
+4. Source: `Deploy from a branch` → Branch: `master` / `/ (root)` → Save
+5. The site is live at `https://getfashionforecast.com/` (custom domain).
+
+The `CNAME` file in the repo root holds the custom domain. Don't delete it,
+and pull before pushing so it isn't overwritten. DNS is on Cloudflare
+(4 GitHub Pages A records + `www` CNAME, all DNS only).
 
 ## Apple URLs to submit
 
 | Field               | URL                                                                 |
 |---------------------|---------------------------------------------------------------------|
-| Privacy Policy URL  | `https://<username>.github.io/fashion-forecast-site/privacy.html`  |
-| Support URL         | `https://<username>.github.io/fashion-forecast-site/support.html`  |
-| Marketing URL       | `https://<username>.github.io/fashion-forecast-site/`              |
+| Privacy Policy URL  | `https://getfashionforecast.com/privacy.html`  |
+| Support URL         | `https://getfashionforecast.com/support.html`  |
+| Marketing URL       | `https://getfashionforecast.com/`              |
 
 ## When you add sync / Supabase
 
