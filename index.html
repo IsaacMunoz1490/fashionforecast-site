@@ -345,16 +345,6 @@ a:hover { text-decoration: underline }
   flex-wrap: wrap;
 }
 .step p:not(.step-num) { font-size: 17px; color: var(--fg-2); max-width: 40ch; line-height: 1.65 }
-.step--solo {
-  grid-template-columns: 1fr;
-  text-align: center;
-  padding: 48px 24px;
-  border: 1px solid var(--border);
-  border-radius: 28px;
-  background: var(--surface);
-}
-.step--solo h3 { justify-content: center }
-.step--solo p:not(.step-num) { margin: 0 auto }
 .chip {
   font-family: var(--ff-body);
   font-size: 11px;
@@ -521,7 +511,16 @@ a:hover { text-decoration: underline }
       </div>
     </article>
 
-    <article class="step step--solo">
+    <article class="step">
+      <div class="step-media">
+        <div class="phone phone--step">
+          <div class="phone-island"></div>
+          <div class="phone-screen">
+            <div class="phone-status"></div>
+            <img class="phone-media" src="assets/trip.png" width="750" height="1534" loading="lazy" decoding="async" alt="Trip day-by-day screen: four days in San Francisco, each with its forecast and an outfit from the capsule">
+          </div>
+        </div>
+      </div>
       <div class="step-text">
         <p class="step-num">Step 3</p>
         <h3>Pack for any city. <span class="chip">Pro</span></h3>
